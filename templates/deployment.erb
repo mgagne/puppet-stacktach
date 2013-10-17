@@ -1,9 +1,23 @@
-    {   
+    {
         "name": "<%= name -%>",
         "durable_queue": <%= durable_queue -%>,
         "rabbit_host": "<%= rabbit_host -%>",
         "rabbit_port": <%= rabbit_port -%>,
         "rabbit_userid": "<%= rabbit_userid -%>",
         "rabbit_password": "<%= rabbit_password -%>",
-        "rabbit_virtual_host": "<%= rabbit_virtual_host %>"
-    },
+        "rabbit_virtual_host": "<%= rabbit_virtual_host %>",
+        "exit_on_exception": true,
+        "queue_name": "stacktach",
+        "topics": {
+            "nova": [
+                {
+                    "queue": "monitor.info",
+                    "routing_key": "monitor.info"
+                },
+                {
+                    "queue": "monitor.error",
+                    "routing_key": "monitor.error"
+                }
+            ]
+        }
+    }
